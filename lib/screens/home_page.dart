@@ -33,12 +33,14 @@ class _HomeState extends State<Home> {
 
             )
             ),
-          // RaisedButton(
-          //   textColor: Colors.white,
-          //   color: Colors.blue,
-          //   child: Text('Sign In'),
-          //   onPressed: (){},
-          // )
+        Padding(
+          padding: EdgeInsets.only(top:30),
+      child:ElevatedButton(
+        style:ElevatedButton.styleFrom(backgroundColor:Colors.green),
+            child: Text('Submit',style:TextStyle(color:Colors.black),),
+            onPressed: (){},
+          )
+        ),
         ],
       )
       ),
