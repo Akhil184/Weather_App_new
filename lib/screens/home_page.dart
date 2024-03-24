@@ -14,6 +14,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar:AppBar(
         title:Text('Weather App'),
+        centerTitle:true,
         backgroundColor:Colors.green,
       ),
       body:Padding(
