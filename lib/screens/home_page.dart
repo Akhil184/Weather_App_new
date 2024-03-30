@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../http_call/get_data.dart';
+import '../models/get_data_model.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -9,6 +12,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  late Future<Weathers> futureAlbums;
+TextEditingController city=TextEditingController();
+var citys;
+  @override
+  void initState() {
+    super.initState();
+    futureAlbums = fetchAlbum();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +34,21 @@ class _HomeState extends State<Home> {
     child:Column(
         mainAxisAlignment:MainAxisAlignment.center,
         children: [
+          FutureBuilder<Weathers>(
+            future: futureAlbums,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text(snapshot.data!.name ?? '');
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              }
+
+              // By default, show a loading spinner.
+              return const CircularProgressIndicator();
+            },
+          ),
           TextField(
+            controller:city,
            style:TextStyle(
 
            ),
@@ -39,7 +65,11 @@ class _HomeState extends State<Home> {
       child:ElevatedButton(
         style:ElevatedButton.styleFrom(backgroundColor:Colors.green),
             child: Text('Submit',style:TextStyle(color:Colors.black),),
-            onPressed: (){},
+            onPressed: (){
+setState(() {
+  citys=city.text;
+});
+            },
           )
         ),
         ],
