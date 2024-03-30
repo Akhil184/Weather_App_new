@@ -4,7 +4,7 @@ import '../models/get_data_model.dart';
 
 Future<Weathers> fetchAlbum() async {
   final response = await http
-      .get(Uri.parse('https://api.openweathermap.org/data/2.5/weather?q=citys&appid=6b4ac0190bc1059d6412c3c8a383beb5'));
+      .get(Uri.parse('https://api.openweathermap.org/data/2.5/weather?q=Home().citys&appid=6b4ac0190bc1059d6412c3c8a383beb5'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,

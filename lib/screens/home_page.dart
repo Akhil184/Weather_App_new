@@ -1,25 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_app/screens/weather_info_screen.dart';
 
 import '../http_call/get_data.dart';
 import '../models/get_data_model.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  TextEditingController city=TextEditingController();
+  var citys;
+  Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  late Future<Weathers> futureAlbums;
-TextEditingController city=TextEditingController();
-var citys;
-  @override
-  void initState() {
-    super.initState();
-    futureAlbums = fetchAlbum();
-  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,21 +32,8 @@ var citys;
     child:Column(
         mainAxisAlignment:MainAxisAlignment.center,
         children: [
-          FutureBuilder<Weathers>(
-            future: futureAlbums,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Text(snapshot.data!.name ?? '');
-              } else if (snapshot.hasError) {
-                return Text('${snapshot.error}');
-              }
-
-              // By default, show a loading spinner.
-              return const CircularProgressIndicator();
-            },
-          ),
           TextField(
-            controller:city,
+            controller:widget.city,
            style:TextStyle(
 
            ),
@@ -67,8 +52,10 @@ var citys;
             child: Text('Submit',style:TextStyle(color:Colors.black),),
             onPressed: (){
 setState(() {
-  citys=city.text;
+  widget.citys=widget.city.text;
 });
+Navigator.push(context,
+    MaterialPageRoute(builder: (context) => WeatherScreen()));
             },
           )
         ),
