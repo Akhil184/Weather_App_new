@@ -4,6 +4,7 @@ import 'package:weather_app/screens/weather_info_screen.dart';
 
 import '../http_call/get_data.dart';
 import '../models/get_data_model.dart';
+import '../utils/utils.dart';
 
 class Home extends StatefulWidget {
   TextEditingController city=TextEditingController();
@@ -52,7 +53,7 @@ class _HomeState extends State<Home> {
             child: Text('Submit',style:TextStyle(color:Colors.black),),
             onPressed: (){
 setState(() {
-  widget.citys=widget.city.text;
+  Va.cityName=widget.city.text;
 });
 Navigator.push(context,
     MaterialPageRoute(builder: (context) => WeatherScreen()));

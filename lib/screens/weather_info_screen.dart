@@ -13,8 +13,6 @@ class WeatherScreen extends StatefulWidget {
 
 class _WeatherScreenState extends State<WeatherScreen> {
   late Future<Weathers> futureAlbums;
-  TextEditingController city=TextEditingController();
-  var citys;
   @override
   void initState() {
     super.initState();
@@ -28,16 +26,25 @@ class _WeatherScreenState extends State<WeatherScreen> {
           centerTitle:true,
           backgroundColor:Colors.green,
         ),
-        body:Padding(
-        padding: EdgeInsets.all(15),
-    child:Column(
-    mainAxisAlignment:MainAxisAlignment.center,
-    children: [
-    FutureBuilder<Weathers>(
+        body:FutureBuilder<Weathers>(
     future: futureAlbums,
     builder: (context, snapshot) {
     if (snapshot.hasData) {
-    return Text(snapshot.data!.name ?? '');
+    return  Padding(padding: new EdgeInsets.all(10.0),
+      child:Column(
+      children: [
+        if(snapshot.data!.weather![0].description=='clear sky')
+          Image.asset('assets/images/clear_sky.jpeg'),
+        if(snapshot.data!.weather![0].description=='haze')
+          Image.asset('assets/images/haze.jpeg'),
+        if(snapshot.data!.weather![0].description=='scattered clouds')
+          Image.asset('assets/images/scatted_cloud.webp'),
+      Padding(padding: new EdgeInsets.all(50.0),
+      child:Text(snapshot.data!.weather![0].description ?? '',style:TextStyle(fontSize:20),),
+      ),
+      ]
+      ),
+      );
     } else if (snapshot.hasError) {
     return Text('${snapshot.error}');
     }
@@ -46,9 +53,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
     return const CircularProgressIndicator();
     },
     ),
-    ],
-    )
-        ),
     );
   }
 }
