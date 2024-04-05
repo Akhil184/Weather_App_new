@@ -42,9 +42,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
         if(snapshot.data!.weather![0].description=='overcast clouds')
           Image.asset('assets/images/overcast.webp'),
         if(snapshot.data!.weather![0].description=='mist')
-          Image.asset('assets/images/mist.jpeg'),
+          Image.asset('assets/images/mist.jpeg',),
         if(snapshot.data!.weather![0].description=='broken clouds')
           Image.asset('assets/images/scattred_cloud.webp',fit:BoxFit.cover,height:650,),
+        if(snapshot.data!.weather![0].description=='few clouds')
+          Image.asset('assets/images/few_clouds.jpeg',fit:BoxFit.cover,height:650,),
       Padding(padding: new EdgeInsets.all(0.0),
       child:Text(snapshot.data!.weather![0].description ?? '',style:TextStyle(fontSize:20),),
       ),
