@@ -38,7 +38,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         if(snapshot.data!.weather![0].description=='haze')
           Image.asset('assets/images/haze.jpeg',fit:BoxFit.cover,height:650,),
         if(snapshot.data!.weather![0].description=='scattered clouds')
-          Image.asset('assets/images/scatted_cloud.webp'),
+          Image.asset('assets/images/scatted_cloud.webp',fit:BoxFit.cover,height:650),
         if(snapshot.data!.weather![0].description=='overcast clouds')
           Image.asset('assets/images/overcast.webp',fit:BoxFit.cover,height:650,),
         if(snapshot.data!.weather![0].description=='mist')
