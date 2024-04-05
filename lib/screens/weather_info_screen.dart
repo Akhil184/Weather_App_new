@@ -34,14 +34,21 @@ class _WeatherScreenState extends State<WeatherScreen> {
       child:Column(
       children: [
         if(snapshot.data!.weather![0].description=='clear sky')
-          Image.asset('assets/images/clear_sky.jpeg'),
+          Image.asset('assets/images/clear_sky.jpeg',height:100,),
         if(snapshot.data!.weather![0].description=='haze')
           Image.asset('assets/images/haze.jpeg'),
         if(snapshot.data!.weather![0].description=='scattered clouds')
           Image.asset('assets/images/scatted_cloud.webp'),
-      Padding(padding: new EdgeInsets.all(50.0),
+        if(snapshot.data!.weather![0].description=='overcast clouds')
+          Image.asset('assets/images/overcast.webp'),
+        if(snapshot.data!.weather![0].description=='mist')
+          Image.asset('assets/images/mist.jpeg'),
+        if(snapshot.data!.weather![0].description=='broken clouds')
+          Image.asset('assets/images/scattred_cloud.webp',fit:BoxFit.cover,height:650,),
+      Padding(padding: new EdgeInsets.all(0.0),
       child:Text(snapshot.data!.weather![0].description ?? '',style:TextStyle(fontSize:20),),
       ),
+
       ]
       ),
       );
