@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   http:
+  newton_particles: ^0.1.7
 
 
   # The following adds the Cupertino Icons font to your application.
