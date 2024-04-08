@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:newton_particles/newton_particles.dart';
+import 'package:video_player/video_player.dart';
 import '../http_call/get_data.dart';
 import '../models/get_data_model.dart';
 
@@ -12,10 +13,17 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
+  late VideoPlayerController _controller;
   late Future<Weathers> futureAlbums;
   @override
   void initState() {
     super.initState();
+    _controller = VideoPlayerController.networkUrl(Uri.parse(
+       ''))
+      ..initialize().then((_) {
+        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+        setState(() {});
+      });
     futureAlbums = fetchAlbum();
   }
   @override
@@ -27,20 +35,21 @@ class _WeatherScreenState extends State<WeatherScreen> {
           centerTitle:true,
           backgroundColor:Colors.green,
         ),
-        body:Newton(
-          // Add any kind of effects to your UI
-          // For example:
-          activeEffects: [
-            RainEffect(
-              particleConfiguration: ParticleConfiguration(
-                shape: CircleShape(),
-                size: const Size(5, 5),
-                color: const SingleParticleColor(color: Colors.black),
-              ),
-              effectConfiguration: const EffectConfiguration(),
-            )
-          ],
-        ),
+        // body:Newton(
+        //   // Add any kind of effects to your UI
+        //   // For example:
+        //   activeEffects: [
+        //     RainEffect(
+        //       particleConfiguration: ParticleConfiguration(
+        //         shape: CircleShape(),
+        //         size: const Size(5, 5),
+        //         color: const SingleParticleColor(color: Colors.black),
+        //       ),
+        //       effectConfiguration: const EffectConfiguration(),
+        //     )
+        //   ],
+        // ),
+      body:VideoPlayer(_controller),
       //   Card(
       //     color:Colors.lightBlue[200],
       //           child:Column(
