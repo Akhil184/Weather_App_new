@@ -19,12 +19,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
   void initState() {
     super.initState();
     _controller = VideoPlayerController.networkUrl(Uri.parse(
-       'assets/images/animation-fluffy-pink-clouds-m.mp4'))
+       'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4'))
       ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {});
-      });
-    futureAlbums = fetchAlbum();
+      _controller.play();
+    });
   }
   @override
   Widget build(BuildContext context) {
