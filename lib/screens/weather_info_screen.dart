@@ -18,8 +18,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.networkUrl(Uri.parse(
-       'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4'))
+    _controller = VideoPlayerController.asset(
+       'assets/images/rain.gif')
       ..initialize().then((_) {
       _controller.play();
     });
